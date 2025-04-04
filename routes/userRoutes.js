@@ -35,6 +35,10 @@ router.post("/signup", async (req, res) => {
   return res.render('home');
 });
 
+router.post('/logout', (req, res) => {
+    res.clearCookie("token");
+    return res.redirect('/user/signin');
+});
 
 
 export default router;

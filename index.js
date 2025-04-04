@@ -29,7 +29,7 @@ app.get("/",checkAuth("token"), (req, res)=>{
 })
 
 app.use("/user",  userRoutes);
-app.use("/blog",  blogRoutes);
+app.use("/blog", checkAuth("token"), blogRoutes);
 
 connectToDatabase("mongodb://127.0.0.1:27017/blog_app");
 

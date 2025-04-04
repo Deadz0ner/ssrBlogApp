@@ -7,7 +7,8 @@ export default function checkAuth(cookieName) {
 
     // If no token is found, stop execution and send a 401 response
     if (!tokenCookieValue) {
-      return res.status(401).json({ message: "Access Denied: No Token Provided!" });
+      res.locals.authMessage = "Please sign in to continue";
+      return res.status(401).redirect("/user/signin");
     }
 
     try {
@@ -16,10 +17,11 @@ export default function checkAuth(cookieName) {
       req.user = userPayload;
     } catch (error) {
       // If token validation fails, send a 401 response
-      return res.status(401).json({ message: "Access Denied: Invalid Token!" });
+      return res.status(401).redirect("/user/signin")
     }
 
     // Proceed to the next middleware or route handler
+    console.log(req.user);
     next();
   };
 }
