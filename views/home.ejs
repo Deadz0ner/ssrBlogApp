@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head") %>
+    <title>HomePage</title>
+  </head>
+  <body>
+    <%- include("./partials/script") %>
+    <%- include("./partials/nav") %>
+
+    <div class="container">
+      <h1>Welcome to the Home Page</h1>
+      <pre id="user-data"></pre> <!-- Placeholder for user data -->
+    </div>
+
+    <script>
+      // Pass the user object from the server to the client
+      const user = <%- JSON.stringify(user) %>;
+      document.getElementById("user-data").textContent = JSON.stringify(user, null, 2);
+    </script>
+  </body>
+</html>
